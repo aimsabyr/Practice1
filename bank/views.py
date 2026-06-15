@@ -23,7 +23,10 @@ class ClientAccountsView(generics.ListAPIView):
     def get_queryset(self):
         return Account.objects.filter(client_id=self.kwargs['id'])
 
-
+# GET /api/accounts/<id>
+class AccountDetailView(generics.RetrieveAPIView):
+    queryset = Account.objects.all()
+    serializer_class = AccountSerializer
 # GET /api/accounts/<id>/transactions
 class AccountTransactionsView(generics.ListAPIView):
     serializer_class = TransactionSerializer

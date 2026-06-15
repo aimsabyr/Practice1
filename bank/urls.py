@@ -4,13 +4,15 @@ from .views import (
     ClientDetailView,
     ClientAccountsView,
     AccountTransactionsView,
-    AnalyticsView
+    AnalyticsView,
+    AccountDetailView
 )
 
 urlpatterns = [
     path('clients/', ClientListView.as_view()),
     path('clients/<int:pk>/', ClientDetailView.as_view()),
     path('clients/<int:id>/accounts/', ClientAccountsView.as_view()),
+    path('accounts/<int:pk>/', AccountDetailView.as_view()),
     path('accounts/<int:id>/transactions/', AccountTransactionsView.as_view()),
     path('analytics/', AnalyticsView.as_view()),
 ]
