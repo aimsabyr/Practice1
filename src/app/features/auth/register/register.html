@@ -1,0 +1,86 @@
+<mat-card class="register-card">
+
+  <h2>Создание аккаунта</h2>
+
+  <p class="subtitle">
+    Зарегистрируйтесь, чтобы начать работу с Task Manager
+  </p>
+
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+    <mat-form-field appearance="outline" class="full-width">
+
+      <mat-label>Электронная почта</mat-label>
+
+      <input
+        matInput
+        type="email"
+        formControlName="email">
+
+      <mat-icon matPrefix>email</mat-icon>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+
+      <mat-label>Пароль</mat-label>
+
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password">
+
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="hidePassword = !hidePassword">
+
+        <mat-icon>
+          {{ hidePassword ? 'visibility' : 'visibility_off' }}
+        </mat-icon>
+
+      </button>
+
+    </mat-form-field>
+
+    <div
+      *ngIf="message"
+      class="message"
+      [class.success]="success"
+      [class.error]="!success">
+
+      {{ message }}
+
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="register-btn"
+      [disabled]="loading">
+
+      <mat-spinner
+        *ngIf="loading"
+        diameter="20">
+      </mat-spinner>
+
+      <span *ngIf="!loading">
+        Зарегистрироваться
+      </span>
+
+    </button>
+
+  </form>
+
+  <p class="login-link">
+
+    Уже есть аккаунт?
+
+    <a routerLink="/login">
+      Войти
+    </a>
+
+  </p>
+
+</mat-card>

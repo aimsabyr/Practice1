@@ -1,0 +1,96 @@
+<div class="container">
+
+  <div class="header">
+
+    <h1>Мои задачи</h1>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="addTask()">
+      Добавить задачу
+    </button>
+
+  </div>
+
+  <!-- Поиск и фильтр -->
+
+  <div class="filters">
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>Поиск</mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="searchText"
+        (input)="filterTasks()"
+        placeholder="Введите название задачи">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>Статус</mat-label>
+
+      <mat-select
+        [(ngModel)]="selectedStatus"
+        (selectionChange)="filterTasks()">
+
+        <mat-option value="all">Все</mat-option>
+        <mat-option value="new">Новая</mat-option>
+        <mat-option value="in-progress">В процессе</mat-option>
+        <mat-option value="done">Выполнена</mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+  </div>
+
+  <!-- Список задач -->
+
+  <mat-card
+    class="task-card"
+    *ngFor="let task of filteredTasks">
+
+    <h2>{{ task.title }}</h2>
+
+    <p>{{ task.description }}</p>
+
+    <p>
+      <strong>Статус:</strong>
+      {{ task.status }}
+    </p>
+
+    <div class="buttons">
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="editTask(task.id!)">
+        Редактировать
+      </button>
+
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="deleteTask(task.id!)">
+        Удалить
+      </button>
+
+    </div>
+
+  </mat-card>
+
+  <!-- Если задач нет -->
+
+  <mat-card
+    class="empty-card"
+    *ngIf="filteredTasks.length === 0">
+
+    <h2>Задачи не найдены</h2>
+
+  </mat-card>
+
+</div>

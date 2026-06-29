@@ -1,59 +1,186 @@
-# TaskManager
+# Менеджер задач
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.16.
+## Описание проекта
 
-## Development server
+**Менеджер задач** — это одностраничное веб-приложение (SPA), разработанное с использованием **Angular Standalone Components** и **Firebase**.
 
-To start a local development server, run:
+Приложение позволяет пользователям регистрироваться, входить в систему, создавать задачи, редактировать их, удалять, выполнять поиск, фильтровать задачи по статусу, а также просматривать статистику и аналитику.
+
+---
+
+# Используемые технологии
+
+* Angular 21
+* TypeScript
+* Angular Material
+* Firebase Authentication
+* Cloud Firestore
+* Angular Router
+* Reactive Forms
+* RxJS
+* Standalone Components
+
+---
+
+# Основные возможности
+
+* Регистрация пользователя
+* Авторизация пользователя
+* Выход из системы
+* Создание задач
+* Редактирование задач
+* Удаление задач
+* Просмотр списка личных задач
+* Поиск задач по названию
+* Фильтрация задач по статусу
+* Панель управления (Dashboard)
+* Страница аналитики
+* Защита маршрутов (Route Guards)
+* Централизованное управление задачами с помощью RxJS Store
+
+---
+
+# Структура проекта
+
+```text
+task-manager/
+│
+├── src/
+│   ├── app/
+│   │   ├── core/
+│   │   │   ├── guards/
+│   │   │   └── services/
+│   │   │
+│   │   ├── features/
+│   │   │   ├── auth/
+│   │   │   ├── dashboard/
+│   │   │   ├── analytics/
+│   │   │   └── tasks/
+│   │   │
+│   │   ├── models/
+│   │   ├── app.routes.ts
+│   │   └── app.config.ts
+│   │
+│   ├── environments/
+│   ├── styles.css
+│   └── main.ts
+│
+├── angular.json
+├── package.json
+└── README.md
+```
+
+---
+
+# Установка проекта
+
+Клонируйте репозиторий:
+
+```bash
+git clone <repository-url>
+```
+
+Установите зависимости:
+
+```bash
+npm install
+```
+
+---
+
+# Настройка Firebase
+
+1. Создайте проект в Firebase.
+2. Включите Authentication (Email/Password).
+3. Создайте базу данных Cloud Firestore.
+4. Получите конфигурацию Firebase.
+5. Добавьте её в файл:
+
+```text
+src/environments/environment.ts
+```
+
+Пример:
+
+```ts
+export const environment = {
+  firebase: {
+    apiKey: "...",
+    authDomain: "...",
+    projectId: "...",
+    storageBucket: "...",
+    messagingSenderId: "...",
+    appId: "..."
+  }
+};
+```
+
+---
+
+# Запуск проекта
+
+Запустите приложение командой:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+После запуска откройте браузер и перейдите по адресу:
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```text
+http://localhost:4200
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
+# Используемое хранилище данных
+
+Отдельный сервер (Backend) в проекте не используется.
+
+В качестве сервиса аутентификации используется **Firebase Authentication**, а для хранения данных — **Cloud Firestore**.
+
+---
+
+# Модель задачи
+
+```ts
+export interface Task {
+  id?: string;
+  title: string;
+  description: string;
+  status: 'new' | 'in-progress' | 'done';
+  createdAt: Date;
+  userId: string;
+}
 ```
 
-## Building
+---
 
-To build the project run:
+# Авторизация
 
-```bash
-ng build
-```
+Пользователь может:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+* зарегистрироваться;
+* войти в систему;
+* выйти из системы.
 
-## Running unit tests
+Неавторизованные пользователи не имеют доступа к следующим разделам:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+* Панель управления;
+* Список задач;
+* Аналитика.
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
+# Аналитика
 
-For end-to-end (e2e) testing, run:
+На странице аналитики отображаются:
 
-```bash
-ng e2e
-```
+* Общее количество задач;
+* Количество новых задач;
+* Количество задач в процессе выполнения;
+* Количество выполненных задач;
+* Процент выполненных задач.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+---
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

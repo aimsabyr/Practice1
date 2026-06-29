@@ -1,0 +1,87 @@
+<mat-toolbar color="primary">
+
+  <span>Менеджер задач</span>
+
+  <span class="spacer"></span>
+
+  <button
+    mat-icon-button
+    (click)="logout()">
+
+    <mat-icon>logout</mat-icon>
+
+  </button>
+
+</mat-toolbar>
+
+<div class="container">
+
+  <h1>Панель управления</h1>
+
+  <p class="subtitle">
+    Добро пожаловать в систему управления задачами
+  </p>
+
+  <div class="cards">
+
+    <mat-card>
+
+      <mat-card-title>Всего задач</mat-card-title>
+
+      <mat-card-content>
+
+        <h2>{{ totalTasks }}</h2>
+
+      </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+      <mat-card-title>Выполнено</mat-card-title>
+
+      <mat-card-content>
+
+        <h2>{{ completedTasks }}</h2>
+
+      </mat-card-content>
+
+    </mat-card>
+
+    <mat-card>
+
+      <mat-card-title>В процессе</mat-card-title>
+
+      <mat-card-content>
+
+        <h2>{{ pendingTasks }}</h2>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+  <div class="buttons">
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="goToTasks()">
+
+      Мои задачи
+
+    </button>
+
+    <button
+      mat-raised-button
+      color="accent"
+      (click)="goToAnalytics()">
+
+      Аналитика
+
+    </button>
+
+  </div>
+
+</div>

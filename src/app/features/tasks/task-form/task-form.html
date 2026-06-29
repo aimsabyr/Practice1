@@ -1,0 +1,65 @@
+<mat-card class="task-card">
+
+  <h2>Создание задачи</h2>
+
+  <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+
+    <mat-form-field appearance="outline" class="full-width">
+
+      <mat-label>Название</mat-label>
+
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Введите название задачи">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+
+      <mat-label>Описание</mat-label>
+
+      <textarea
+        matInput
+        rows="4"
+        formControlName="description"
+        placeholder="Введите описание задачи">
+      </textarea>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+
+      <mat-label>Статус</mat-label>
+
+      <mat-select formControlName="status">
+
+        <mat-option value="new">
+          Новая
+        </mat-option>
+
+        <mat-option value="in-progress">
+          В процессе
+        </mat-option>
+
+        <mat-option value="done">
+          Выполнена
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="save-btn"
+      type="submit">
+
+      Сохранить
+
+    </button>
+
+  </form>
+
+</mat-card>

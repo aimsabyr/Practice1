@@ -1,0 +1,87 @@
+<mat-card class="login-card">
+
+  <h2>Добро пожаловать!</h2>
+
+  <p class="subtitle">
+    Войдите в систему Task Manager
+  </p>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+    <mat-form-field appearance="outline" class="full-width">
+
+      <mat-label>Электронная почта</mat-label>
+
+      <input
+        matInput
+        type="email"
+        formControlName="email">
+
+      <mat-icon matPrefix>email</mat-icon>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+
+      <mat-label>Пароль</mat-label>
+
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password">
+
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="hidePassword = !hidePassword">
+
+        <mat-icon>
+          {{ hidePassword ? 'visibility' : 'visibility_off' }}
+        </mat-icon>
+
+      </button>
+
+    </mat-form-field>
+
+    <div
+      *ngIf="message"
+      class="message"
+      [class.success]="success"
+      [class.error]="!success">
+
+      {{ message }}
+
+    </div>
+
+    <button
+      mat-raised-button
+      color="primary"
+      class="login-btn"
+      type="submit"
+      [disabled]="loading">
+
+      <mat-spinner
+        *ngIf="loading"
+        diameter="20">
+      </mat-spinner>
+
+      <span *ngIf="!loading">
+        Войти
+      </span>
+
+    </button>
+
+  </form>
+
+  <p class="register-link">
+
+    Нет аккаунта?
+
+    <a routerLink="/register">
+      Зарегистрироваться
+    </a>
+
+  </p>
+
+</mat-card>
